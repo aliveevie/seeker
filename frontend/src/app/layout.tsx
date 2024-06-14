@@ -7,8 +7,8 @@ import { Toaster } from "react-hot-toast";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Starknet Scaffold",
-  description: "Created with love",
+  title: "Seeker",
+  description: "A job board for starknet builders!",
 };
 
 export default function RootLayout({
