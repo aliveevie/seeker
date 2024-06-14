@@ -1,42 +1,37 @@
 "use client";
 
-import { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 
 const Header2 = () => {
-    const [loggedIn, setLoggedIn] = useState(false);
-
-    const handleSignIn = () => {
-        setLoggedIn(true);
-    };
-
-    const handleSignOut = () => {
-        setLoggedIn(false);
-    };
-
     return (
-        <div className="flex items-center justify-between bg-gray-100 p-4 shadow-md">
-            <div className="flex items-center space-x-4">
-                <p className="font-bold text-lg">Seeker</p>
-                <a href="#jobs" className="text-blue-500 hover:underline">Jobs</a>
-                <a href="#bounties" className="text-blue-500 hover:underline">Bounties</a>
-                <div className="relative">
-                    <input 
-                        type="text" 
-                        placeholder="Search" 
-                        className="pl-8 pr-2 py-1 border rounded-md focus:outline-none focus:border-blue-500"
-                    />
-                    <FaSearch className="absolute left-2 top-2 text-gray-400" />
+        <header className="w-full bg-gray-800 p-4">
+            <div className="container mx-auto flex items-center justify-between">
+                <div className="flex items-center space-x-1 cursor-pointer" onClick={() => window.location.href = '/'}>
+                    <span className="text-2xl font-bold text-red-500">S</span>
+                    <span className="text-2xl font-bold text-yellow-500">E</span>
+                    <span className="text-2xl font-bold text-green-500">E</span>
+                    <span className="text-2xl font-bold text-blue-500">K</span>
+                    <span className="text-2xl font-bold text-purple-500">E</span>
+                    <span className="text-2xl font-bold text-pink-500">R</span>
+                </div>
+                <nav className="flex space-x-4 text-white ml-8">
+                    <a href="#jobs" className="hover:underline">Jobs</a>
+                    <a href="#bounties" className="hover:underline">Bounties</a>
+                </nav>
+                <div className="flex items-center space-x-4 ml-auto">
+                    <div className="relative">
+                        <input
+                            type="text"
+                            placeholder="Search"
+                            className="px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                        <FaSearch className="absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-500" />
+                    </div>
+                    <a href="#signin" className="text-white hover:underline">Sign In</a>
+                    <a href="#signout" className="text-white hover:underline">Sign Out</a>
                 </div>
             </div>
-            <div className="flex items-center space-x-4">
-                {loggedIn ? (
-                    <button onClick={handleSignOut} className="text-red-500 hover:underline">Sign out</button>
-                ) : (
-                    <button onClick={handleSignIn} className="text-green-500 hover:underline">Sign in</button>
-                )}
-            </div>
-        </div>
+        </header>
     );
 };
 
