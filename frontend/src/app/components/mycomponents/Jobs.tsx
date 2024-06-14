@@ -30,7 +30,6 @@ const Jobs = () => {
 
     return (
         <div className="max-w-4xl mx-auto mt-8 px-4">
-            <Apply />
             <div className="flex justify-between items-center mb-4">
                 <h3 className="text-xl font-bold">Jobs</h3>
                 <div className="flex space-x-4">
