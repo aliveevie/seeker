@@ -2,6 +2,7 @@
 
 import bounties from "@/app/data/bounties";
 import { Bounty } from "@/app/data/bounties";
+import AddBounty from "./AddBounty";
 
 const Bounties = () => {
     return (
@@ -26,6 +27,7 @@ const Bounties = () => {
                     </div>
                 ))}
             </div>
+            <AddBounty />
         </div>
     );
 };
