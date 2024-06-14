@@ -1,40 +1,47 @@
-type Bounty = {
+// /app/data/bounties.ts
+export type Bounty = {
     name: string;
-    datePosted: string; // Assuming date format as string for simplicity
+    datePosted: string;
     description: string;
-    reward: number; // Assuming reward is in a numerical format
+    reward: string;
+    type: 'fulltime' | 'parttime';
 };
 
 const bounties: Bounty[] = [
     {
-        name: "Smart Contract Security Audit",
-        datePosted: "2024-06-15",
-        description: "Conduct a security audit for smart contracts deployed on StarkNet. Identify vulnerabilities and propose solutions to enhance security measures.",
-        reward: 500 // Example reward in Stark tokens
+        name: "Cairo Fullstack Bounty",
+        datePosted: "2024-06-01",
+        description: "Develop a fullstack application using Cairo for Starknet.",
+        reward: "5000 DAI",
+        type: 'fulltime'
     },
     {
-        name: "Decentralized Exchange Integration",
-        datePosted: "2024-06-14",
-        description: "Integrate a decentralized exchange (DEX) protocol with StarkNet. Develop smart contracts and frontend components for seamless trading experiences.",
-        reward: 800 // Example reward in Stark tokens
+        name: "Backend Developer for Starknet",
+        datePosted: "2024-06-05",
+        description: "Create robust backend services for Starknet applications.",
+        reward: "4000 DAI",
+        type: 'parttime'
     },
     {
-        name: "Layer 2 Scaling Solution",
-        datePosted: "2024-06-13",
-        description: "Propose and implement a Layer 2 scaling solution for StarkNet. Improve transaction throughput and reduce transaction costs.",
-        reward: 1000 // Example reward in Stark tokens
+        name: "Starknet Cairo Library",
+        datePosted: "2024-06-10",
+        description: "Develop a reusable library in Cairo for the Starknet ecosystem.",
+        reward: "3000 DAI",
+        type: 'fulltime'
     },
     {
-        name: "StarkNet Developer Tools",
+        name: "Starknet DApp Security Audit",
         datePosted: "2024-06-12",
-        description: "Build developer tools and libraries to facilitate easier deployment and testing of smart contracts on StarkNet. Enhance developer experience.",
-        reward: 600 // Example reward in Stark tokens
+        description: "Conduct a security audit for a decentralized application on Starknet.",
+        reward: "4500 DAI",
+        type: 'fulltime'
     },
     {
-        name: "Decentralized Identity Solution",
-        datePosted: "2024-06-11",
-        description: "Develop a decentralized identity (DID) solution on StarkNet. Implement secure identity management and authentication protocols.",
-        reward: 700 // Example reward in Stark tokens
+        name: "Frontend Developer for Starknet",
+        datePosted: "2024-06-15",
+        description: "Build responsive frontend interfaces for Starknet applications.",
+        reward: "3500 DAI",
+        type: 'parttime'
     }
 ];
 
