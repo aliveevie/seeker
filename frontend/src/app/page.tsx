@@ -11,7 +11,8 @@ import Bounties from "./components/mycomponents/Bounty";
 import { useState } from "react";
 import ApplyBounty from "./components/mycomponents/ApplyBounty";
 import Welcome from "./components/mycomponents/body";
-
+import Seeker from "./components/mycomponents/seeker";
+import Reasons from "./components/mycomponents/Reasons";
 
 export default function Home() {
 
@@ -23,6 +24,8 @@ export default function Home() {
      
      <Header2 />
     <Welcome />
+    <Seeker />
+    <Reasons />
     </main>
   );
 }
