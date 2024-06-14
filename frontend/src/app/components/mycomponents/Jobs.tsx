@@ -50,7 +50,7 @@ const Jobs = () => {
             <div className="grid gap-6">
                 {jobs.map((job, index) => (
                     <div key={index} className="bg-white shadow-md p-4 rounded-md">
-                        <h4 className="text-lg font-semibold">{job.name}</h4>
+                        <h3 className="text-lg font-semibold text-black">{job.name}</h3>
                         <p className="text-gray-600 text-sm mb-2">{job.datePosted}</p>
                         <p className="text-gray-700">{job.description}</p>
                         <p className="text-gray-600 mt-2">Duration: {job.duration}</p>
