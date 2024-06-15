@@ -3,24 +3,36 @@ import { useState, useEffect } from "react";
 import { FaUser, FaSignOutAlt, FaPlusCircle, FaBriefcase, FaGift } from "react-icons/fa";
 import users, { User } from "@/app/data/users";
 import { useRouter } from "next/router";
+import { useAccount } from "@starknet-react/core";
 
 const Dashboard = () => {
     const [user, setUser] = useState<User | null>(null); // Declare user state with null initially
 
+    const address = useAccount();
+
     const [name, setName] = useState("");
-    
+    const params = new URLSearchParams(window.location.search);
+    const username = params.get("user");    
 
     useEffect(() => {
-        const params = new URLSearchParams(window.location.search);
-        const username = params.get("user");
-        
-
+     
         if (username) {
             const foundUser = users.find(u => u.username === username);
             if (foundUser) {
                 console.log(foundUser)
                 setUser(foundUser);
                 
+            }else{
+                setUser({
+                    username: username,
+                    password: '1234',
+                    address: '',
+                    email: 'not available',
+                    appliedJobs: ['not applied'],
+                    postedJobs: ['not applied'],
+                    appliedBounties: ['not applied'],
+                    postedBounties: ['not applied']
+                });
             } 
         } 
         
@@ -58,7 +70,7 @@ const Dashboard = () => {
                             <FaUser className="text-4xl text-gray-600" />
                         </div>
                         <h2 className="text-xl font-semibold text-gray-700">{name}</h2>
-                        <p className="text-gray-600">{user.username}</p>
+                        <p className="text-gray-600">{username}</p>
                     </div>
                     <div className="mb-6">
                         <button 

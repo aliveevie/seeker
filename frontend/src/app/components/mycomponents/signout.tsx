@@ -3,11 +3,13 @@
 import { useState } from 'react';
 import { FaGithub } from 'react-icons/fa';
 import { IoClose } from 'react-icons/io5';
+import users from '@/app/data/users';
 
 const SignUp = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [reg, setReg] = useState('');
 
     const handleUsernameChange = (e:any) => {
         setUsername(e.target.value);
@@ -23,8 +25,24 @@ const SignUp = () => {
 
     const handleClose = () => {
         // Handle close action here, e.g., navigate back, close modal, etc.
-        console.log('Close button clicked');
+        window.location.href = "/"
     };
+
+    const handleSubmit = (e:any) => {
+            e.preventDefault();
+            for(const user of users){
+                if(user.username == username){
+                    setReg("User already Exist");
+                }else{
+                    users.push({
+                        username: username, password: password,
+                        address: ''
+                    })
+                    window.location.href = `/profile?user=${username}`
+                }
+            }
+
+    }
 
     return (
         <div className="flex items-center justify-center min-h-screen">
@@ -77,12 +95,14 @@ const SignUp = () => {
                         />
                     </div>
                     <button 
+                        onClick={handleSubmit}
                         type="submit" 
                         className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-700"
                     >
                         Sign Up
                     </button>
                 </form>
+                <p  className='text-black' >{reg}</p>
                 <div className="mt-6 text-center">
                     <button 
                         className="w-full bg-gray-900 text-white p-2 rounded-md hover:bg-gray-800 focus:outline-none focus:bg-gray-700 flex items-center justify-center"
