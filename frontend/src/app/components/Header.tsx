@@ -8,6 +8,8 @@ import useTheme from "../hooks/useTheme";
 import ThemeSwitch from "./Theme";
 import NetworkSwitcher from "./NetworkSwitcher";
 import ConnectModal from "./ConnectModal";
+import Logo from "./logo";
+
 
 const Header = () => {
   const { address } = useAccount();
@@ -103,15 +105,8 @@ const Header = () => {
             height="40"
             className="md:text-[1.2em]"
           >
-            <text
-              x="10"
-              y="30"
-              fontFamily="Cursive, sans-serif"
-              fill={`${theme === "dark" ? "white" : "black"}`}
-            >
-              starknet-scaffold
-            </text>
           </svg>
+          <Logo />
         </span>
 
         <div className="hidden md:flex gap-8">
