@@ -7,7 +7,7 @@ import {
     useStarkProfile,
   } from "@starknet-react/core";
 import Header from "../Header";
-
+import Dashboard from "./dashboard";
 
 
 import Image from "next/image";
@@ -44,8 +44,8 @@ const Profile = () => {
                 </div>
                 ) : (
                     <div className="text-white" >
-                        <h2>Welcome to Dashboard!</h2>
-                        </div>
+                        <Dashboard />
+                    </div>
                 )}
             </div>
        </>
