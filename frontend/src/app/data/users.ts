@@ -1,12 +1,18 @@
-type User = {
+
+
+// Define the User type
+export type User = {
     username: string;
     password: string;
     address: string;
-    appliedJobs: string[];
-    postedJobs: string[];
-    appliedBounties: string[];
-    postedBounties: string[];
+    name?: string; // Optional, depending on your data structure
+    email?: string; // Optional, depending on your data structure
+    appliedJobs?: string[]; // Optional, depending on your data structure
+    postedJobs?: string[]; // Optional, depending on your data structure
+    appliedBounties?: string[]; // Optional, depending on your data structure
+    postedBounties?: string[]; // Optional, depending on your data structure
 };
+
 
 const users: User[] = [
     {

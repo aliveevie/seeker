@@ -1,21 +1,34 @@
-"use client";
-
-import { useState } from "react";
-import { FaUser, FaEnvelope, FaSignOutAlt, FaPlusCircle, FaBriefcase, FaGift } from "react-icons/fa";
+// Ensure to import necessary modules and types
+import { useState, useEffect } from "react";
+import { FaUser, FaSignOutAlt, FaPlusCircle, FaBriefcase, FaGift } from "react-icons/fa";
+import users, { User } from "@/app/data/users";
+import { useRouter } from "next/router";
 
 const Dashboard = () => {
-    const [user] = useState({
-        name: "John Doe",
-        email: "john.doe@example.com",
-        appliedJobs: ["Fullstack Developer", "Backend Developer"],
-        postedJobs: ["Frontend Developer", "Starknet Engineer"],
-        appliedBounties: ["Cairo Developer Bounty"],
-        postedBounties: ["Starknet Integration Bounty"]
-    });
+    const [user, setUser] = useState<User | null>(null); // Declare user state with null initially
+
+    const [name, setName] = useState("");
+    
+
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        const username = params.get("user");
+        
+
+        if (username) {
+            const foundUser = users.find(u => u.username === username);
+            if (foundUser) {
+                console.log(foundUser)
+                setUser(foundUser);
+                
+            } 
+        } 
+        
+    }, []); // Depend on router to access query params on navigation changes
 
     const handleLogout = () => {
         // Implement logout functionality
-        window.location.href = "/"
+        window.location.href = "/"; // Redirect to home or logout page
     };
 
     const handleCreateJob = () => {
@@ -34,16 +47,18 @@ const Dashboard = () => {
         console.log("Apply for Bounty clicked!")
     };
 
+    if (!user) return <div>Loading...</div>;
+
     return (
-        <div className="flex min-h-screen bg-gray-100">
+        <div className="flex min-h-screen bg-gray-100 mt-20">
             <aside className="w-64 bg-white p-4 shadow-lg flex flex-col justify-between">
                 <div>
                     <div className="flex flex-col items-center mb-8">
                         <div className="mb-4">
                             <FaUser className="text-4xl text-gray-600" />
                         </div>
-                        <h2 className="text-xl font-semibold">{user.name}</h2>
-                        <p className="text-gray-600">{user.email}</p>
+                        <h2 className="text-xl font-semibold text-gray-700">{name}</h2>
+                        <p className="text-gray-600">{user.username}</p>
                     </div>
                     <div className="mb-6">
                         <button 
@@ -65,20 +80,20 @@ const Dashboard = () => {
                             className="w-full flex items-center justify-center bg-orange-500 text-white p-2 rounded-md hover:bg-orange-600 mb-2"
                         >
                             <FaBriefcase className="mr-2" />
-                            Apply for Job
+                            Search for Job
                         </button>
                         <button 
                             onClick={handleApplyBounty} 
                             className="w-full flex items-center justify-center bg-purple-500 text-white p-2 rounded-md hover:bg-purple-600"
                         >
                             <FaGift className="mr-2" />
-                            Apply for Bounty
+                            Search for Bounty
                         </button>
                     </div>
                 </div>
                 <button 
                     onClick={handleLogout} 
-                    className="w-full flex items-center justify-center bg-red-500 text-white p-2 rounded-md hover:bg-red-600"
+                    className="w-full flex items-center justify-center bg-red-500 text-white p-2 rounded-md hover:bg-red-600 mt-auto"
                 >
                     <FaSignOutAlt className="mr-2" />
                     Logout
@@ -92,7 +107,7 @@ const Dashboard = () => {
                     <div>
                         <h2 className="text-2xl font-semibold text-gray-700 mb-4">Applied Jobs</h2>
                         <ul className="bg-white p-4 rounded-lg shadow-md">
-                            {user.appliedJobs.map((job, index) => (
+                            {(user.appliedJobs ?? []).map((job, index) => (
                                 <li key={index} className="border-b py-2 text-gray-700">{job}</li>
                             ))}
                         </ul>
@@ -100,7 +115,7 @@ const Dashboard = () => {
                     <div>
                         <h2 className="text-2xl font-semibold text-gray-700 mb-4">Posted Jobs</h2>
                         <ul className="bg-white p-4 rounded-lg shadow-md">
-                            {user.postedJobs.map((job, index) => (
+                            {(user.postedJobs ?? []).map((job:any, index:any) => (
                                 <li key={index} className="border-b py-2 text-gray-700">{job}</li>
                             ))}
                         </ul>
@@ -108,7 +123,7 @@ const Dashboard = () => {
                     <div>
                         <h2 className="text-2xl font-semibold text-gray-700 mb-4">Applied Bounties</h2>
                         <ul className="bg-white p-4 rounded-lg shadow-md">
-                            {user.appliedBounties.map((bounty, index) => (
+                            {(user.appliedBounties ?? []).map((bounty:any, index:any) => (
                                 <li key={index} className="border-b py-2 text-gray-700">{bounty}</li>
                             ))}
                         </ul>
@@ -116,7 +131,7 @@ const Dashboard = () => {
                     <div>
                         <h2 className="text-2xl font-semibold text-gray-700 mb-4">Posted Bounties</h2>
                         <ul className="bg-white p-4 rounded-lg shadow-md">
-                            {user.postedBounties.map((bounty, index) => (
+                            {(user.postedBounties ?? []).map((bounty:any, index:any) => (
                                 <li key={index} className="border-b py-2 text-gray-700">{bounty}</li>
                             ))}
                         </ul>
