@@ -9,6 +9,7 @@ const Dashboard = () => {
     const [user, setUser] = useState<User | null>(null); // Declare user state with null initially
 
     const address = useAccount();
+    
 
     const [name, setName] = useState("");
     const params = new URLSearchParams(window.location.search);
