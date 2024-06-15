@@ -27,7 +27,7 @@ const Header2 = () => {
                         />
                         <FaSearch className="absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-500" />
                     </div>
-                    <a href="#signin" className="text-white hover:underline">Sign In</a>
+                    <a href="/signin" className="text-white hover:underline">Sign In</a>
                     <a href="#signout" className="text-white hover:underline">Sign Out</a>
                 </div>
             </div>
