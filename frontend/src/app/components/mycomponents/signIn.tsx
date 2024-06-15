@@ -4,9 +4,13 @@ import { useState } from 'react';
 import { FaGithub } from 'react-icons/fa';
 import { IoClose } from 'react-icons/io5';
 import users from '@/app/data/users';
-import router from 'next/router';
+// import router from 'next/router';
+import { useRouter } from 'next/navigation';
+
 
 const SignIn = () => {
+
+    const router = useRouter()
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [app, setApp] = useState(false);
@@ -29,7 +33,7 @@ const SignIn = () => {
         e.preventDefault(); // Prevent the default form submission
         for (const user of users) {
             if (user.username === username) {
-                router.push('/profile'); // Use Next.js router for navigation
+                router.replace(`profile?user=${username}`); // Use Next.js router for navigation
                 return;
             }
         }
