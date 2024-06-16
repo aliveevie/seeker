@@ -7,6 +7,7 @@ import Pop from "./Pop";
 
 const Welcome = () => {
     const [imageLoaded, setImageLoaded] = useState(false);
+    const [modal, setModal] = useState(false);
 
     useEffect(() => {
         setImageLoaded(true);
@@ -14,6 +15,14 @@ const Welcome = () => {
 
     const handleImageLoad = () => {
         setImageLoaded(true);
+    };
+
+    const handleModal = () => {
+        setModal(true);
+    };
+
+    const handleBack = () => {
+        setModal(false);
     };
 
     return (
@@ -39,21 +48,33 @@ const Welcome = () => {
                     Welcome to the Seeker Starknet job boards. Explore jobs, find bounties, or create your own opportunities in the Starknet ecosystem.
                 </p>
                 <div className="flex space-x-4">
-                    <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 transition duration-300 ease-in-out">
+                    <button 
+                        className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 transition duration-300 ease-in-out"
+                        onClick={handleModal}
+                    >
                         Search Jobs
                     </button>
-                    <button className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-green-700 transition duration-300 ease-in-out">
+                    <button 
+                        className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-green-700 transition duration-300 ease-in-out"
+                        onClick={handleModal}
+                    >
                         Search Bounties
                     </button>
-                    <button className="bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-700 transition duration-300 ease-in-out">
+                    <button 
+                        className="bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-700 transition duration-300 ease-in-out"
+                        onClick={handleModal}
+                    >
                         Post a Job
                     </button>
-                    <button className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-700 transition duration-300 ease-in-out">
+                    <button 
+                        className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-700 transition duration-300 ease-in-out"
+                        onClick={handleModal}
+                    >
                         Post a Bounty
                     </button>
                 </div>
-                <Pop />
             </div>
+            {modal && <Pop handleBack={handleBack} />}
         </main>
     );
 };

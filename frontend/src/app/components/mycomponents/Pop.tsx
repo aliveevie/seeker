@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import Image from 'next/image';
 
-const Pop = () => {
-    const [showModal, setShowModal] = useState(true);
-
+const Pop =  ({ handleBack }: { handleBack: () => void }) => {
+  
     const handleLogin = () => {
         window.location.href = '/signin';
     };
@@ -12,12 +11,7 @@ const Pop = () => {
         window.location.href = '/signup';
     };
 
-    const handleBack = () => {
-        window.location.href = '/';
-    };
-
-    if (!showModal) return null;
-
+    
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 z-50">
             <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full text-center">
