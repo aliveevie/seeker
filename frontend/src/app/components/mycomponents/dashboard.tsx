@@ -69,7 +69,6 @@ const Dashboard = () => {
 
     return (
         <div className="flex min-h-screen bg-gray-100 mt-20">
-            <ApplyJob />
             <aside className="w-64 bg-white p-4 shadow-lg flex flex-col justify-between">
                 <div>
                     <div className="flex flex-col items-center mb-8">
@@ -119,6 +118,7 @@ const Dashboard = () => {
                 </button>
             </aside>
             <main className="flex-1 p-8">
+                <AddJob />
                 <div className="mb-8">
                     <h1 className="text-3xl font-bold text-gray-700">Dashboard</h1>
                 </div>
