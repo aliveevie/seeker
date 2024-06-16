@@ -20,10 +20,12 @@ const Dashboard = () => {
     
     const handleCancel = () => {
         setSave(false)
+        setShowBounty(false)
     }
 
     const handleSave = () => {
             setSave(false)
+            setShowBounty(false)
     }
     
 
@@ -62,7 +64,7 @@ const Dashboard = () => {
     };
 
     const handleCreateBounty = () => {
-        setSave(false)    
+        setShowBounty(true)    
 };
 
     const handleApplyJob = () => {
@@ -166,7 +168,7 @@ const Dashboard = () => {
                 </div>
                 {save && <AddJob handleCancel={handleCancel} handleSave={handleSave} username={username} />}
 
-                {!save && <AddBounty handleCancel={handleCancel} handleSave={handleSave} username={username} /> }
+                {showBounty && <AddBounty handleCancel={handleCancel} handleSave={handleSave} username={username} /> }
 
             </main>
         </div>
