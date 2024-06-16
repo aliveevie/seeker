@@ -1,8 +1,14 @@
+import bounties from '@/app/data/bounties';
 import { useState } from 'react';
 
+
+
 type AddBountyProps = {
-    onAddBounty: (newBounty: Bounty) => void;
+    handleCancel: () => void;
+    handleSave: () => void;
+    username: string | null;
 };
+
 
 type Bounty = {
     name: string;
@@ -12,7 +18,8 @@ type Bounty = {
     type: 'fulltime' | 'parttime';
 };
 
-const AddBounty = () => {
+
+const AddBounty = ({ handleCancel, handleSave, username }: AddBountyProps) => {
     const [newBounty, setNewBounty] = useState<Bounty>({
         name: '',
         datePosted: '',
@@ -40,6 +47,8 @@ const AddBounty = () => {
             reward: '',
             type: 'fulltime'
         });
+
+        handleSave()
     };
 
     return (

@@ -9,7 +9,6 @@ import AddJob from "./Addjob";
 import AddBounty from "./AddBounty";
 import ApplyJob from "./ApplyJob";
 
-
 const Dashboard = () => {
     const [user, setUser] = useState<User | null>(null); // Declare user state with null initially
     const address = useAccount();
@@ -17,6 +16,7 @@ const Dashboard = () => {
     const params = new URLSearchParams(window.location.search);
     const username = params.get("user");
     const [save, setSave] = useState(false);
+    const [showBounty, setShowBounty] = useState(false);
     
     const handleCancel = () => {
         setSave(false)
@@ -62,8 +62,8 @@ const Dashboard = () => {
     };
 
     const handleCreateBounty = () => {
-        console.log("Create Bounty clicked!")
-    };
+        setSave(false)    
+};
 
     const handleApplyJob = () => {
         console.log("Apply for Job clicked!")
@@ -164,8 +164,10 @@ const Dashboard = () => {
                         </ul>
                     </div>
                 </div>
-                {save && <AddJob handleCancel={handleCancel} handleSave={handleSave} username={username} />
-}
+                {save && <AddJob handleCancel={handleCancel} handleSave={handleSave} username={username} />}
+
+                {!save && <AddBounty handleCancel={handleCancel} handleSave={handleSave} username={username} /> }
+
             </main>
         </div>
     );
