@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "../../Main.module.css"; // Create a CSS module for custom styles
+import Pop from "./Pop";
 
 const Welcome = () => {
     const [imageLoaded, setImageLoaded] = useState(false);
@@ -26,7 +27,7 @@ const Welcome = () => {
                     onLoad={handleImageLoad} // Use onLoad instead of onLoadingComplete
                 />
             </div>
-            <div className="relative z-10 flex flex-col items-center justify-center h-screen text-center p-4 text-white">
+            <div className="relative z-10 flex flex-col items-center justify-center h-screen text-center p-4 text-gray">
                 <h1 className="text-4xl md:text-6xl font-bold mb-4">
                     <span className="text-red-500">The </span>
                     <span className="text-yellow-500">Seeker </span>
@@ -51,6 +52,7 @@ const Welcome = () => {
                         Post a Bounty
                     </button>
                 </div>
+                <Pop />
             </div>
         </main>
     );
