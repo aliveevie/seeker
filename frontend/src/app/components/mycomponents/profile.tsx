@@ -22,7 +22,7 @@ const Profile = () => {
        
         <div>
                 {!account ? (
-                    <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
+                    <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 mt-20">
            
            
                     <div className="text-center text-white mb-8">

@@ -4,6 +4,11 @@ import { FaUser, FaSignOutAlt, FaPlusCircle, FaBriefcase, FaGift } from "react-i
 import users, { User } from "@/app/data/users";
 import { useRouter } from "next/router";
 import { useAccount } from "@starknet-react/core";
+import ApplyBounty from "./ApplyBounty";
+import AddJob from "./Addjob";
+import AddBounty from "./AddBounty";
+import ApplyJob from "./ApplyJob";
+
 
 const Dashboard = () => {
     const [user, setUser] = useState<User | null>(null); // Declare user state with null initially
@@ -64,6 +69,7 @@ const Dashboard = () => {
 
     return (
         <div className="flex min-h-screen bg-gray-100 mt-20">
+            <ApplyJob />
             <aside className="w-64 bg-white p-4 shadow-lg flex flex-col justify-between">
                 <div>
                     <div className="flex flex-col items-center mb-8">

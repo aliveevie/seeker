@@ -9,7 +9,7 @@ type Application = {
     message: string;
 };
 
-const Apply = () => {
+const ApplyJob = () => {
     const [application, setApplication] = useState<Application>({
         name: '',
         skills: '',
@@ -88,4 +88,4 @@ const Apply = () => {
     );
 };
 
-export default Apply;
+export default ApplyJob;
