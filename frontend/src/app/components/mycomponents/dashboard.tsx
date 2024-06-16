@@ -12,13 +12,19 @@ import ApplyJob from "./ApplyJob";
 
 const Dashboard = () => {
     const [user, setUser] = useState<User | null>(null); // Declare user state with null initially
-
     const address = useAccount();
-    
-
     const [name, setName] = useState("");
     const params = new URLSearchParams(window.location.search);
-    const username = params.get("user");    
+    const username = params.get("user");
+    
+    const handleCancel = () => {
+        
+    }
+
+    const handleSave = () => {
+
+    }
+    
 
     useEffect(() => {
      
@@ -118,7 +124,6 @@ const Dashboard = () => {
                 </button>
             </aside>
             <main className="flex-1 p-8">
-                <AddJob />
                 <div className="mb-8">
                     <h1 className="text-3xl font-bold text-gray-700">Dashboard</h1>
                 </div>
@@ -156,6 +161,7 @@ const Dashboard = () => {
                         </ul>
                     </div>
                 </div>
+                <AddJob handleCancel={handleCancel} handleSave={handleSave} />
             </main>
         </div>
     );
