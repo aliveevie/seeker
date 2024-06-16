@@ -16,13 +16,14 @@ const Dashboard = () => {
     const [name, setName] = useState("");
     const params = new URLSearchParams(window.location.search);
     const username = params.get("user");
+    const [save, setSave] = useState(false);
     
     const handleCancel = () => {
-        
+        setSave(false)
     }
 
     const handleSave = () => {
-
+            setSave(false)
     }
     
 
@@ -56,7 +57,8 @@ const Dashboard = () => {
     };
 
     const handleCreateJob = () => {
-        console.log("Create Job clicked!")
+           setSave(true)
+
     };
 
     const handleCreateBounty = () => {
@@ -88,6 +90,7 @@ const Dashboard = () => {
                         <button 
                             onClick={handleCreateJob} 
                             className="w-full flex items-center justify-center bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 mb-2"
+
                         >
                             <FaPlusCircle className="mr-2" />
                             Create Job
@@ -161,7 +164,8 @@ const Dashboard = () => {
                         </ul>
                     </div>
                 </div>
-                <AddJob handleCancel={handleCancel} handleSave={handleSave} />
+                {save && <AddJob handleCancel={handleCancel} handleSave={handleSave} username={username} />
+}
             </main>
         </div>
     );

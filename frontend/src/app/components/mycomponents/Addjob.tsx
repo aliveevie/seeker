@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import jobs from '@/app/data/jobs';
 
 type Job = {
     name: string;
@@ -6,22 +7,25 @@ type Job = {
     description: string;
     duration: string;
     type: 'fulltime' | 'parttime';
-    username: string;
+    username: string | null;
 };
 
 type AddJobProps = {
     handleCancel: () => void;
-    handleSave: (job: Job) => void;
+    handleSave: () => void;
+    username: string | null;
+   
+  //  save: string
 };
 
-const AddJob = ({ handleCancel, handleSave }: AddJobProps) => {
+const AddJob = ({ handleCancel, handleSave, username }: AddJobProps) => {
     const [newJob, setNewJob] = useState<Job>({
         name: '',
         datePosted: '',
         description: '',
         duration: '',
         type: 'fulltime', // Default to fulltime, can be changed by user
-        username: ''
+        username: username
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -34,18 +38,24 @@ const AddJob = ({ handleCancel, handleSave }: AddJobProps) => {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        handleSave(newJob);
-        // Optionally, reset form fields after submission
-        setNewJob({
-            name: '',
-            datePosted: '',
-            description: '',
-            duration: '',
-            type: 'fulltime',
-            username: ''
-        });
+    //    handleSave(newJob);
+        
+        const data = jobs.find(u => u.username === username )
+       
+        if(data){
+            jobs.push({
+                name: newJob.name,
+                datePosted: newJob.datePosted,
+                description: newJob.description,
+                duration: newJob.duration,
+                type: newJob.type,
+                username: newJob.username
+            }) 
+        }
+        handleSave()
+        
     };
-    
+
 
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 z-50">
