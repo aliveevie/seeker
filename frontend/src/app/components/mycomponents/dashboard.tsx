@@ -8,6 +8,9 @@ import ApplyBounty from "./ApplyBounty";
 import AddJob from "./Addjob";
 import AddBounty from "./AddBounty";
 import ApplyJob from "./ApplyJob";
+import Jobs from "./Jobs";
+
+
 
 const Dashboard = () => {
     const [user, setUser] = useState<User | null>(null); // Declare user state with null initially
@@ -17,6 +20,7 @@ const Dashboard = () => {
     const username = params.get("user");
     const [save, setSave] = useState(false);
     const [showBounty, setShowBounty] = useState(false);
+    const [showJobs, setShowJobs] = useState(false);
     
     const handleCancel = () => {
         setSave(false)
@@ -68,8 +72,8 @@ const Dashboard = () => {
 };
 
     const handleApplyJob = () => {
-        console.log("Apply for Job clicked!")
-    };
+        setShowJobs(true)  
+};
 
     const handleApplyBounty = () => {
         console.log("Apply for Bounty clicked!")
@@ -169,6 +173,9 @@ const Dashboard = () => {
                 {save && <AddJob handleCancel={handleCancel} handleSave={handleSave} username={username} />}
 
                 {showBounty && <AddBounty handleCancel={handleCancel} handleSave={handleSave} username={username} /> }
+
+
+                {showJobs && <Jobs />}
 
             </main>
         </div>
