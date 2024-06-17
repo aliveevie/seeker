@@ -19,7 +19,7 @@ const Bounties = ({ username, handleCancelJob, handleSaveJob, handleApplyJob, sh
     return (
         <div className="max-w-4xl mx-auto p-4">
             <div className="mb-6">
-                <h2 className="text-2xl font-bold mb-2">Bounties</h2>
+                <h2 className="text-2xl font-bold mb-2 text-black">Bounties</h2>
                 <p className="text-gray-600">Explore the latest bounties in the Starknet ecosystem</p>
             </div>
             <div className="grid gap-6">
