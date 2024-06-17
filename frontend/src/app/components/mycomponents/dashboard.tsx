@@ -203,7 +203,13 @@ const Dashboard = () => {
                 showApply={showApply}
                 handleSaveJob={handleSaveJob}  /> }
 
-                { !showJobs && bounties && <Bounties /> }
+                { !showJobs && bounties && <Bounties 
+                username={username} handleCancelJob={handleCancelJob} 
+                handleApplyJob={handleApplyJob}
+                showApply={showApply}
+                handleSaveJob={handleSaveJob}
+                
+                /> }
 
 
             </main>
