@@ -27,7 +27,7 @@ const Bounties = () => {
                     </div>
                 ))}
             </div>
-            <AddBounty />
+          
         </div>
     );
 };
