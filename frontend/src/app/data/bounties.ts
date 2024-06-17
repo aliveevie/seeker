@@ -14,7 +14,7 @@ const bounties: Bounty[] = [
         name: "Cairo Fullstack Bounty",
         datePosted: "2024-06-01",
         description: "Develop a fullstack application using Cairo for Starknet.",
-        reward: "5000 DAI",
+        reward: "5000 STK",
         type: 'fulltime',
         username: users[0].username // aliveevie
     },
@@ -22,7 +22,7 @@ const bounties: Bounty[] = [
         name: "Backend Developer for Starknet",
         datePosted: "2024-06-05",
         description: "Create robust backend services for Starknet applications.",
-        reward: "4000 DAI",
+        reward: "4000 STK",
         type: 'parttime',
         username: users[1].username // johndoe
     },
@@ -30,7 +30,7 @@ const bounties: Bounty[] = [
         name: "Starknet Cairo Library",
         datePosted: "2024-06-10",
         description: "Develop a reusable library in Cairo for the Starknet ecosystem.",
-        reward: "3000 DAI",
+        reward: "3000 STK",
         type: 'fulltime',
         username: users[2].username // janedoe
     },
@@ -38,7 +38,7 @@ const bounties: Bounty[] = [
         name: "Starknet DApp Security Audit",
         datePosted: "2024-06-12",
         description: "Conduct a security audit for a decentralized application on Starknet.",
-        reward: "4500 DAI",
+        reward: "4500 STK",
         type: 'fulltime',
         username: users[3].username // robertsmith
     },
@@ -46,7 +46,7 @@ const bounties: Bounty[] = [
         name: "Frontend Developer for Starknet",
         datePosted: "2024-06-15",
         description: "Build responsive frontend interfaces for Starknet applications.",
-        reward: "3500 DAI",
+        reward: "3500 STK",
         type: 'parttime',
         username: users[4].username // emilybrown
     }
