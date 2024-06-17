@@ -23,6 +23,8 @@ const Dashboard = () => {
     const [showBounty, setShowBounty] = useState(false);
     const [showJobs, setShowJobs] = useState(false);
     const [bounties, setBounties] = useState(false);
+    const [showApply, setShowApply] = useState<boolean>(false);
+
 
 
     
@@ -42,7 +44,7 @@ const Dashboard = () => {
         if (username) {
             const foundUser = users.find(u => u.username === username);
             if (foundUser) {
-                console.log(foundUser)
+              //  console.log(foundUser)
                 setUser(foundUser);
                 
             }else{
@@ -75,7 +77,7 @@ const Dashboard = () => {
         setShowBounty(true)    
 };
 
-    const handleApplyJob = () => {
+    const handleApplyJobs = () => {
         setShowJobs(true)
         setBounties(false)  
 };
@@ -84,6 +86,21 @@ const Dashboard = () => {
         setShowJobs(false)
         setBounties(true)
     };
+
+    function handleCancelJob(){
+        setShowApply(false)
+        console.log("You are clicking and Not working!")
+    }
+
+
+    function handleSaveJob(){
+        setShowApply(false)
+    }
+
+    function handleApplyJob(){
+        setShowApply(true)
+    }
+    
 
 
     if (!user) return <div>Loading...</div>;
@@ -116,7 +133,7 @@ const Dashboard = () => {
                             Create Bounty
                         </button>
                         <button 
-                            onClick={handleApplyJob} 
+                            onClick={handleApplyJobs} 
                             className="w-full flex items-center justify-center bg-orange-500 text-white p-2 rounded-md hover:bg-orange-600 mb-2"
                         >
                             <FaBriefcase className="mr-2" />
@@ -181,7 +198,10 @@ const Dashboard = () => {
 
                 {showBounty && <AddBounty handleCancel={handleCancel} handleSave={handleSave} username={username} /> }
 
-                { showJobs && !bounties && <Jobs /> }
+                { showJobs && !bounties && <Jobs username={username} handleCancelJob={handleCancelJob} 
+                handleApplyJob={handleApplyJob}
+                showApply={showApply}
+                handleSaveJob={handleSaveJob}  /> }
 
                 { !showJobs && bounties && <Bounties /> }
 

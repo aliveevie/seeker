@@ -12,16 +12,19 @@ type Job = {
     type: 'fulltime' | 'parttime';
 };
 
-const Jobs = () => {
+type Addpros = {
+        handleCancelJob: () => void;
+        handleSaveJob: () => void;
+        handleApplyJob: () => void;
+        username: string | null;
+        showApply: boolean;
+}
+
+const Jobs = ( { username, handleCancelJob, handleSaveJob, handleApplyJob, showApply } : Addpros ) => {
     const [jobs, setJobs] = useState<Job[]>(jobsData);
     const [jobsApplied, setJobsApplied] = useState<number>(0);
     const [jobsPosted, setJobsPosted] = useState<number>(jobs.length);
-    const [showApply, setShowApply] = useState<boolean>(false);
-
-    function handleApplyJob(){
-        setShowApply(true)
-    }
-
+   // const [showApply, setShowApply] = useState<boolean>(false);
 
     const handleAddJob = () => {
         const newJob: Job = {
@@ -35,25 +38,13 @@ const Jobs = () => {
         setJobsPosted(jobsPosted + 1);
     };
 
+    
+
     return (
         <div className="max-w-4xl mx-auto mt-8 px-4">
             <div className="flex justify-between items-center mb-4">
-                <h3 className="text-xl font-bold">Jobs</h3>
+                <h3 className="text-xl font-bold text-black">Jobs</h3>
                 <div className="flex space-x-4">
-                    <div>
-                        <p className="text-sm text-gray-600">Jobs Applied: {jobsApplied}</p>
-                    </div>
-                    <div>
-                        <p className="text-sm text-gray-600">Jobs Posted: {jobsPosted}</p>
-                    </div>
-                    <div>
-                        <button
-                            onClick={handleAddJob}
-                            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none"
-                        >
-                            Add Job
-                        </button>
-                    </div>
                 </div>
             </div>
             <div className="grid gap-6">
@@ -72,7 +63,7 @@ const Jobs = () => {
                     </div>
                 ))}
             </div>
-            { showApply && <ApplyJob /> }
+            { showApply && <ApplyJob handleCancelJob={handleCancelJob} handleSaveJob={handleSaveJob} username={username} /> }
         </div>
     );
 };

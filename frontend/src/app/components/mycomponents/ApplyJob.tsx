@@ -8,7 +8,13 @@ type Application = {
     message: string;
 };
 
-const ApplyJob = () => {
+type AddJobProps = {
+    handleCancelJob: () => void;
+    handleSaveJob: () => void;
+    username: string | null;
+};
+
+const ApplyJob = ({ handleCancelJob, handleSaveJob, username }: AddJobProps) => {
     const [application, setApplication] = useState<Application>({
         name: '',
         skills: '',
@@ -23,6 +29,7 @@ const ApplyJob = () => {
         }));
     };
 
+
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         // onApply(application);
@@ -32,6 +39,8 @@ const ApplyJob = () => {
             skills: '',
             message: ''
         });
+
+        handleSaveJob();
     };
 
     return (
@@ -78,7 +87,7 @@ const ApplyJob = () => {
                     <div className="flex justify-end space-x-2">
                         <button
                             type="button"
-                            onClick={() => setApplication({ name: '', skills: '', message: '' })}
+                            onClick={handleCancelJob}
                             className="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 focus:outline-none"
                         >
                             Cancel
