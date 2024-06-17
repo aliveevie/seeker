@@ -2,6 +2,7 @@ import { useState } from 'react';
 import jobsData from "@/app/data/jobs";
 import AddJob from './Addjob';
 import Apply from './ApplyJob';
+import ApplyJob from './ApplyJob';
 
 type Job = {
     name: string;
@@ -15,6 +16,12 @@ const Jobs = () => {
     const [jobs, setJobs] = useState<Job[]>(jobsData);
     const [jobsApplied, setJobsApplied] = useState<number>(0);
     const [jobsPosted, setJobsPosted] = useState<number>(jobs.length);
+    const [showApply, setShowApply] = useState<boolean>(false);
+
+    function handleApplyJob(){
+        setShowApply(true)
+    }
+
 
     const handleAddJob = () => {
         const newJob: Job = {
@@ -57,13 +64,15 @@ const Jobs = () => {
                         <p className="text-gray-700">{job.description}</p>
                         <p className="text-gray-600 mt-2">Duration: {job.duration}</p>
                         <p className="text-gray-600">Type: {job.type}</p>
-                        <button className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none">
+                        <button 
+                        onClick={handleApplyJob}
+                        className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none">
                             Apply
                         </button>
                     </div>
                 ))}
             </div>
-            
+            { showApply && <ApplyJob /> }
         </div>
     );
 };
