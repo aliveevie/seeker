@@ -14,6 +14,9 @@ import Welcome from "./components/mycomponents/body";
 import Seeker from "./components/mycomponents/seeker";
 import Reasons from "./components/mycomponents/Reasons";
 
+import { SessionProvider } from "next-auth/react"
+
+
 export default function Home() {
 
   const [sing, setSign] = useState(false);
@@ -21,6 +24,7 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between py-24 md:p-24">
+
      
      <Header2 />
     <Welcome />

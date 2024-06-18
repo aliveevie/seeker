@@ -1,4 +1,5 @@
 import SignIn from "../components/mycomponents/signIn";
+import { signIn,  } from "next-auth/react";
 
 
 export default async function Page() {

@@ -91,12 +91,15 @@ const SignIn = () => {
                     </button>
                 </form>
                 <div className="mt-6 text-center">
+                    <a href='/github-login' >
                     <button 
                         className="w-full bg-gray-900 text-white p-2 rounded-md hover:bg-gray-800 focus:outline-none focus:bg-gray-700 flex items-center justify-center"
                     >
                         <FaGithub className="mr-2" />
                         Sign in with GitHub
                     </button>
+                    </a>
+                   
                 </div>
                 <p className='text-black' >{invalid}</p>
                 <div className="mt-4 text-center">
