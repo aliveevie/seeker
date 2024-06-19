@@ -1,26 +1,15 @@
 "use client";
 
-import { signIn, signOut, useSession, SessionProvider } from 'next-auth/react';
-import { getSession } from 'next-auth/react';
-import { useEffect, useState } from 'react';
+import { signIn, signOut, useSession } from 'next-auth/react';
+import GitHub_Login from '../components/mycomponents/github_login';
 
-const SignIn = ({ session }: { session: any }) => {
+const SignIn = () => {
+
   return (
-    <SessionProvider session={session}>
-      <div>
-        {!session ? (
-          <>
-            <h3>Not signed in</h3>
-            <button onClick={() => signIn('github')}>Sign in with GitHub</button>
-          </>
-        ) : (
-          <>
-            <h3>Signed in as {session.user?.name}</h3>
-            <button onClick={() => signOut()}>Sign out</button>
-          </>
-        )}
-      </div>
-    </SessionProvider>
+    <div>
+      <button onClick={() => signIn('github')}>Sign in with GitHub</button>
+
+    </div>
   );
 };
 
