@@ -1,16 +1,15 @@
-"use client";
 
-import { signIn, signOut, useSession } from 'next-auth/react';
-import GitHub_Login from '../components/mycomponents/github_login';
-
-const SignIn = () => {
-
+import { signIn } from "../auth";
+ 
+export default function SignIn() {
   return (
-    <div>
-      <button onClick={() => signIn('github')}>Sign in with GitHub</button>
-
-    </div>
-  );
-};
-
-export default SignIn;
+    <form
+      action={async () => {
+        "use server"
+        await signIn("github")
+      }}
+    >
+      <button type="submit">Signin with GitHub</button>
+    </form>
+  )
+} 
