@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import jobs from '@/app/data/jobs';
+import { User } from '@/app/data/users';
 
 type Job = {
     name: string;
@@ -14,11 +15,12 @@ type AddJobProps = {
     handleCancel: () => void;
     handleSave: () => void;
     username: string | null;
+    user: User
    
   //  save: string
 };
 
-const AddJob = ({ handleCancel, handleSave, username }: AddJobProps) => {
+const AddJob = ({ handleCancel, handleSave, username, user }: AddJobProps) => {
     const [newJob, setNewJob] = useState<Job>({
         name: '',
         datePosted: '',
@@ -27,6 +29,8 @@ const AddJob = ({ handleCancel, handleSave, username }: AddJobProps) => {
         type: 'fulltime', // Default to fulltime, can be changed by user
         username: username
     });
+
+    console.log(user);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -40,17 +44,8 @@ const AddJob = ({ handleCancel, handleSave, username }: AddJobProps) => {
         e.preventDefault();
     //    handleSave(newJob);
         
-        const data = jobs.find(u => u.username === username )
-       
-        if(data){
-            jobs.push({
-                name: newJob.name,
-                datePosted: newJob.datePosted,
-                description: newJob.description,
-                duration: newJob.duration,
-                type: newJob.type,
-                username: newJob.username
-            }) 
+        if(user){
+            user.postedJobs?.push(newJob.name) 
         }
         handleSave()
         
@@ -63,8 +58,9 @@ const AddJob = ({ handleCancel, handleSave, username }: AddJobProps) => {
                 <h3 className="text-lg font-semibold mb-4 text-black">Create Job</h3>
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-black mb-1">Name</label>
+                        <label htmlFor="name" className="block text-sm font-medium text-black mb-1">Job Title</label>
                         <input
+                            placeholder='Input Job Title'
                             type="text"
                             id="name"
                             name="name"
