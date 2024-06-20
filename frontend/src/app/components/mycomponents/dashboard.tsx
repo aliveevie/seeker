@@ -10,7 +10,7 @@ import AddBounty from "./AddBounty";
 import ApplyJob from "./ApplyJob";
 import Jobs from "./Jobs";
 import Bounties from "./Bounty";
-
+import JobPage from "./jobs_page";
 
 
 const Dashboard = () => {
@@ -24,6 +24,11 @@ const Dashboard = () => {
     const [showJobs, setShowJobs] = useState(false);
     const [bounties, setBounties] = useState(false);
     const [showApply, setShowApply] = useState<boolean>(false);
+    const [jobsPop, setJobsPop] = useState(false);
+
+    function handleJobsPop(){
+            setJobsPop(true)
+    }
     
     const handleCancel = () => {
         setSave(false)
@@ -162,7 +167,7 @@ const Dashboard = () => {
                         <h2 className="text-2xl font-semibold text-gray-700 mb-4">Applied Jobs</h2>
                         <ul className="bg-white p-4 rounded-lg shadow-md">
                             {(user.appliedJobs ?? []).map((job, index) => (
-                                   <li key={index} className="border-b py-2 text-gray-700">{job}</li>
+                                <li key={index} className="border-b py-2 text-gray-700">{job}</li>
                             ))}
                         </ul>
                     </div>
@@ -170,7 +175,7 @@ const Dashboard = () => {
                         <h2 className="text-2xl font-semibold text-gray-700 mb-4">Posted Jobs</h2>
                         <ul className="bg-white p-4 rounded-lg shadow-md">
                             {(user.postedJobs ?? []).map((job:any, index:any) => (
-                                <li key={index} className="border-b py-2 text-gray-700">{job}</li>
+                                <li key={index} className="border-b py-2 text-gray-700" onClick={handleJobsPop} >{job}</li>
                             ))}
                         </ul>
                     </div>
@@ -207,6 +212,8 @@ const Dashboard = () => {
                 handleSaveJob={handleSaveJob}
                 
                 /> }
+
+                {jobsPop && <JobPage /> }
             </main>
         </div>
     );
