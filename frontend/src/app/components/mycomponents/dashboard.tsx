@@ -11,6 +11,7 @@ import ApplyJob from "./ApplyJob";
 import Jobs from "./Jobs";
 import Bounties from "./Bounty";
 import JobPage from "./jobs_page";
+import jobs from "@/app/data/jobs";
 
 
 const Dashboard = () => {
@@ -196,13 +197,21 @@ const Dashboard = () => {
                         </ul>
                     </div>
                 </div>
-                {save && <AddJob handleCancel={handleCancel} handleSave={handleSave} username={username} user={user} />}
+                {save && <AddJob 
+                    handleCancel={handleCancel} 
+                    handleSave={handleSave} 
+                    username={username} 
+                    user={user}
+                    job={jobs}
+                
+                />}
 
                 {showBounty && <AddBounty handleCancel={handleCancel} handleSave={handleSave} username={username} /> }
 
                 { showJobs && !bounties && <Jobs username={username} handleCancelJob={handleCancelJob} 
                 handleApplyJob={handleApplyJob}
                 showApply={showApply}
+                jobsData={jobs}
                 handleSaveJob={handleSaveJob}  /> }
 
                 { !showJobs && bounties && <Bounties 

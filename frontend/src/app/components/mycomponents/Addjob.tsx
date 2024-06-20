@@ -1,26 +1,23 @@
 import { useState } from 'react';
-import jobs from '@/app/data/jobs';
+import { Job } from '@/app/data/jobs';
 import { User } from '@/app/data/users';
 
-type Job = {
-    name: string;
-    datePosted: string;
-    description: string;
-    duration: string;
-    type: 'fulltime' | 'parttime';
-    username: string | null;
-};
+
 
 type AddJobProps = {
     handleCancel: () => void;
     handleSave: () => void;
     username: string | null;
     user: User
+    job: Job[]
    
   //  save: string
 };
 
-const AddJob = ({ handleCancel, handleSave, username, user }: AddJobProps) => {
+const AddJob = ({ handleCancel, handleSave, username, user, job }: AddJobProps) => {
+
+    console.log(job)
+
     const [newJob, setNewJob] = useState<Job>({
         name: '',
         datePosted: '',
@@ -30,7 +27,6 @@ const AddJob = ({ handleCancel, handleSave, username, user }: AddJobProps) => {
         username: username
     });
 
-    console.log(user);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -46,6 +42,7 @@ const AddJob = ({ handleCancel, handleSave, username, user }: AddJobProps) => {
         
         if(user){
             user.postedJobs?.push(newJob.name) 
+            job.push(newJob)
         }
         handleSave()
         

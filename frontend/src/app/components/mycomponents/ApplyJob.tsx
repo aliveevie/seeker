@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from 'react';
+import { Job } from '@/app/data/jobs';
+import { User } from '@/app/data/users';
 
 type Application = {
-    name: string;
+    name: string | null;
     skills: string;
     message: string;
 };
@@ -12,11 +14,14 @@ type AddJobProps = {
     handleCancelJob: () => void;
     handleSaveJob: () => void;
     username: string | null;
+    job: Job[];
+    userJob: [];
+   // user: User
 };
 
-const ApplyJob = ({ handleCancelJob, handleSaveJob, username }: AddJobProps) => {
+const ApplyJob = ({ handleCancelJob, handleSaveJob, username, job, userJob }: AddJobProps) => {
     const [application, setApplication] = useState<Application>({
-        name: '',
+        name: username,
         skills: '',
         message: ''
     });
@@ -29,17 +34,16 @@ const ApplyJob = ({ handleCancelJob, handleSaveJob, username }: AddJobProps) => 
         }));
     };
 
-
+    console.log(userJob)
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         // onApply(application);
         // Optionally, reset form fields after submission
         setApplication({
-            name: '',
-            skills: '',
-            message: ''
+            name: username,
+            skills: application.skills,
+            message: application.message
         });
-
         handleSaveJob();
     };
 
@@ -50,15 +54,7 @@ const ApplyJob = ({ handleCancelJob, handleSaveJob, username }: AddJobProps) => 
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
                         <label htmlFor="name" className="block text-sm font-medium text-black mb-1">Name</label>
-                        <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            value={application.name}
-                            onChange={handleChange}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                            required
-                        />
+                      
                     </div>
                     <div>
                         <label htmlFor="skills" className="block text-sm font-medium text-black mb-1">Skills</label>

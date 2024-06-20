@@ -1,16 +1,10 @@
 import { useState } from 'react';
-import jobsData from "@/app/data/jobs";
+// import jobsData from "@/app/data/jobs";
 import AddJob from './Addjob';
 import Apply from './ApplyJob';
 import ApplyJob from './ApplyJob';
 
-type Job = {
-    name: string;
-    datePosted: string;
-    description: string;
-    duration: string;
-    type: 'fulltime' | 'parttime';
-};
+import { Job } from '@/app/data/jobs';
 
 type Addpros = {
         handleCancelJob: () => void;
@@ -18,13 +12,22 @@ type Addpros = {
         handleApplyJob: () => void;
         username: string | null;
         showApply: boolean;
+        jobsData: Job[];
+     // setShowApply: () => void;
 }
 
-const Jobs = ( { username, handleCancelJob, handleSaveJob, handleApplyJob, showApply } : Addpros ) => {
+const Jobs = ( { username, handleCancelJob, handleSaveJob, handleApplyJob, showApply, jobsData } : Addpros ) => {
     const [jobs, setJobs] = useState<Job[]>(jobsData);
     const [jobsApplied, setJobsApplied] = useState<number>(0);
     const [jobsPosted, setJobsPosted] = useState<number>(jobs.length);
    // const [showApply, setShowApply] = useState<boolean>(false);
+
+   const [userJob, setUserJob] = useState<[]>([]);
+
+    const handleJobApplyData = (data:any) => {
+        setUserJob(data)
+    }
+   
 
     const handleAddJob = () => {
         const newJob: Job = {
@@ -32,14 +35,15 @@ const Jobs = ( { username, handleCancelJob, handleSaveJob, handleApplyJob, showA
             datePosted: "2024-06-16",
             description: "Description of the new job.",
             duration: "Permanent",
-            type: "fulltime"
+            type: "fulltime",
+            username: null,
+            candidates: [{}]
         };
         setJobs([...jobs, newJob]);
         setJobsPosted(jobsPosted + 1);
     };
 
     
-
     return (
         <div className="max-w-4xl mx-auto mt-8 px-4">
             <div className="flex justify-between items-center mb-4">
@@ -49,7 +53,9 @@ const Jobs = ( { username, handleCancelJob, handleSaveJob, handleApplyJob, showA
             </div>
             <div className="grid gap-6">
                 {jobs.map((job, index) => (
-                    <div key={index} className="bg-white shadow-md p-4 rounded-md">
+                    <div key={index} 
+                    onClick={() => handleJobApplyData(job)}
+                    className="bg-white shadow-md p-4 rounded-md">
                         <h3 className="text-lg font-semibold text-black">{job.name}</h3>
                         <p className="text-gray-600 text-sm mb-2">{job.datePosted}</p>
                         <p className="text-gray-700">{job.description}</p>
@@ -63,7 +69,10 @@ const Jobs = ( { username, handleCancelJob, handleSaveJob, handleApplyJob, showA
                     </div>
                 ))}
             </div>
-            { showApply && <ApplyJob handleCancelJob={handleCancelJob} handleSaveJob={handleSaveJob} username={username} /> }
+            { showApply && <ApplyJob handleCancelJob={handleCancelJob} handleSaveJob={handleSaveJob} username={username} 
+            job={jobsData}
+            userJob={userJob}
+            /> }
         </div>
     );
 };

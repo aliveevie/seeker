@@ -1,10 +1,11 @@
-type Job = {
+export type Job = {
     name: string;
     datePosted: string; // Assuming date format as string for simplicity
     description: string;
     duration: string;
     type: 'fulltime' | 'parttime';
     username: string | null;
+    candidates: [{}]
 };
 
 const jobs: Job[] = [
@@ -14,7 +15,12 @@ const jobs: Job[] = [
         description: "Develop and maintain full stack applications on StarkNet using Solidity and JavaScript. Collaborate with backend and frontend teams to integrate blockchain functionality.",
         duration: "Permanent",
         type: 'fulltime',
-        username: "aliveevie"
+        username: "aliveevie",
+        candidates: [{
+            username: '',
+            skills: '', 
+            message: ''
+        }]
     },
     {
         name: "Backend Developer - StarkNet",
@@ -22,7 +28,8 @@ const jobs: Job[] = [
         description: "Design and implement backend services and APIs for StarkNet applications. Work closely with frontend developers and blockchain engineers to ensure seamless integration.",
         duration: "Contract",
         type: 'fulltime',
-        username: "johndoe"
+        username: "johndoe",
+        candidates: [{}]
     },
     {
         name: "Cairo Developer - StarkNet",
@@ -30,7 +37,8 @@ const jobs: Job[] = [
         description: "Create and optimize smart contracts using Cairo language on StarkNet. Implement secure and efficient blockchain solutions for decentralized applications.",
         duration: "Permanent",
         type: 'fulltime',
-        username: "janedoe"
+        username: "janedoe",
+        candidates: [{}]
     },
     {
         name: "StarkNet Engineer",
@@ -38,7 +46,8 @@ const jobs: Job[] = [
         description: "Research and develop innovative solutions on the StarkNet platform. Implement core protocols and contribute to the advancement of decentralized technologies.",
         duration: "Permanent",
         type: 'fulltime',
-        username: "robertsmith"
+        username: "robertsmith",
+        candidates: [{}]
     },
     {
         name: "Blockchain Developer - Part-Time",
@@ -46,7 +55,8 @@ const jobs: Job[] = [
         description: "Participate in the development of blockchain solutions on StarkNet. Contribute to smart contract development, testing, and deployment.",
         duration: "Part-Time",
         type: 'parttime',
-        username: "emilybrown"
+        username: "emilybrown",
+        candidates: [{}]
     }
 ];
 
