@@ -162,7 +162,7 @@ const Dashboard = () => {
                         <h2 className="text-2xl font-semibold text-gray-700 mb-4">Applied Jobs</h2>
                         <ul className="bg-white p-4 rounded-lg shadow-md">
                             {(user.appliedJobs ?? []).map((job, index) => (
-                                <li key={index} className="border-b py-2 text-gray-700">{job}</li>
+                                   <li key={index} className="border-b py-2 text-gray-700">{job}</li>
                             ))}
                         </ul>
                     </div>
@@ -207,8 +207,6 @@ const Dashboard = () => {
                 handleSaveJob={handleSaveJob}
                 
                 /> }
-
-
             </main>
         </div>
     );
