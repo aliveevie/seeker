@@ -26,6 +26,12 @@ const Dashboard = () => {
     const [bounties, setBounties] = useState(false);
     const [showApply, setShowApply] = useState<boolean>(false);
     const [jobsPop, setJobsPop] = useState(false);
+    const [jobtitle, setJobTitle] = useState('');
+
+    function handleJobTitle(title:any){
+            setJobTitle(title)
+            setJobsPop(true)
+    }
 
     function handleJobsPop(){
             setJobsPop(true)
@@ -168,7 +174,9 @@ const Dashboard = () => {
                         <h2 className="text-2xl font-semibold text-gray-700 mb-4">Applied Jobs</h2>
                         <ul className="bg-white p-4 rounded-lg shadow-md">
                             {(user.appliedJobs ?? []).map((job, index) => (
-                                <li key={index} className="border-b py-2 text-gray-700">{job}</li>
+                                <li key={index} className="border-b py-2 text-gray-700"
+                                onClick={() => handleJobTitle(job)}
+                                >{job}</li>
                             ))}
                         </ul>
                     </div>
@@ -224,7 +232,10 @@ const Dashboard = () => {
                 
                 /> }
 
-                {jobsPop && <JobPage /> }
+                { jobsPop && <JobPage 
+                job={jobs}
+                title={jobtitle}
+                /> }
             </main>
         </div>
     );
