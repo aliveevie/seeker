@@ -15,11 +15,11 @@ type AddJobProps = {
     handleSaveJob: () => void;
     username: string | null;
     job: Job[];
-    userJob: [];
-   // user: User
+    userJob: any;
+    user: User
 };
 
-const ApplyJob = ({ handleCancelJob, handleSaveJob, username, job, userJob }: AddJobProps) => {
+const ApplyJob = ({ handleCancelJob, handleSaveJob, username, job, userJob, user }: AddJobProps) => {
     const [application, setApplication] = useState<Application>({
         name: username,
         skills: '',
@@ -34,7 +34,7 @@ const ApplyJob = ({ handleCancelJob, handleSaveJob, username, job, userJob }: Ad
         }));
     };
 
-    console.log(userJob)
+   // console.log(userJob)
     
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -45,6 +45,9 @@ const ApplyJob = ({ handleCancelJob, handleSaveJob, username, job, userJob }: Ad
             skills: application.skills,
             message: application.message
         });
+        user.appliedJobs?.push(userJob.name)
+        userJob.candidates.push(application)
+        console.log(userJob)
         handleSaveJob();
     };
 
@@ -53,10 +56,7 @@ const ApplyJob = ({ handleCancelJob, handleSaveJob, username, job, userJob }: Ad
             <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg">
                 <h3 className="text-lg font-semibold mb-4 text-black">Apply</h3>
                 <form onSubmit={handleSubmit} className="space-y-4">
-                    <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-black mb-1">Name</label>
-                      
-                    </div>
+                   
                     <div>
                         <label htmlFor="skills" className="block text-sm font-medium text-black mb-1">Skills</label>
                         <input

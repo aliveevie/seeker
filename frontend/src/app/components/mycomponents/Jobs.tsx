@@ -3,7 +3,7 @@ import { useState } from 'react';
 import AddJob from './Addjob';
 import Apply from './ApplyJob';
 import ApplyJob from './ApplyJob';
-
+import { User } from '@/app/data/users';
 import { Job } from '@/app/data/jobs';
 
 type Addpros = {
@@ -14,9 +14,10 @@ type Addpros = {
         showApply: boolean;
         jobsData: Job[];
      // setShowApply: () => void;
+        user: User
 }
 
-const Jobs = ( { username, handleCancelJob, handleSaveJob, handleApplyJob, showApply, jobsData } : Addpros ) => {
+const Jobs = ( { username, handleCancelJob, handleSaveJob, handleApplyJob, showApply, jobsData, user } : Addpros ) => {
     const [jobs, setJobs] = useState<Job[]>(jobsData);
     const [jobsApplied, setJobsApplied] = useState<number>(0);
     const [jobsPosted, setJobsPosted] = useState<number>(jobs.length);
@@ -72,6 +73,7 @@ const Jobs = ( { username, handleCancelJob, handleSaveJob, handleApplyJob, showA
             { showApply && <ApplyJob handleCancelJob={handleCancelJob} handleSaveJob={handleSaveJob} username={username} 
             job={jobsData}
             userJob={userJob}
+            user={user}
             /> }
         </div>
     );

@@ -5,7 +5,7 @@ export type Job = {
     duration: string;
     type: 'fulltime' | 'parttime';
     username: string | null;
-    candidates: [{}]
+    candidates: any
 };
 
 const jobs: Job[] = [
@@ -16,11 +16,7 @@ const jobs: Job[] = [
         duration: "Permanent",
         type: 'fulltime',
         username: "aliveevie",
-        candidates: [{
-            username: '',
-            skills: '', 
-            message: ''
-        }]
+        candidates: []
     },
     {
         name: "Backend Developer - StarkNet",
@@ -29,7 +25,7 @@ const jobs: Job[] = [
         duration: "Contract",
         type: 'fulltime',
         username: "johndoe",
-        candidates: [{}]
+        candidates: []
     },
     {
         name: "Cairo Developer - StarkNet",
@@ -38,7 +34,7 @@ const jobs: Job[] = [
         duration: "Permanent",
         type: 'fulltime',
         username: "janedoe",
-        candidates: [{}]
+        candidates: []
     },
     {
         name: "StarkNet Engineer",
@@ -47,7 +43,7 @@ const jobs: Job[] = [
         duration: "Permanent",
         type: 'fulltime',
         username: "robertsmith",
-        candidates: [{}]
+        candidates: []
     },
     {
         name: "Blockchain Developer - Part-Time",
@@ -56,7 +52,7 @@ const jobs: Job[] = [
         duration: "Part-Time",
         type: 'parttime',
         username: "emilybrown",
-        candidates: [{}]
+        candidates: []
     }
 ];
 
