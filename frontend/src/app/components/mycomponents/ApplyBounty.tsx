@@ -27,7 +27,6 @@ const ApplyBounty = ({ username, handleCancelJob, handleSaveJob, handleApplyJob,
         message: ''
     });
 
-    console.log(dataBounties)
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -39,9 +38,10 @@ const ApplyBounty = ({ username, handleCancelJob, handleSaveJob, handleApplyJob,
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        dataBounties.candidates?.push(application)
-        
+        dataBounties.candidates?.push(application);
+        user.appliedBounties?.push(dataBounties.name);
         handleSaveJob();
+        console.log(dataBounties)
     };
 
     return (
