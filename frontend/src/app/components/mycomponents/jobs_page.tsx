@@ -5,11 +5,10 @@ import { useState, useEffect } from 'react';
 type JobsProps = {
   title: string;
   job: any;
-  visible: boolean;
   handleVisibleJob: () => void;
 };
 
-const JobPage = ({ title, job, visible, handleVisibleJob }: JobsProps) => {
+const JobPage = ({ title, job, handleVisibleJob }: JobsProps) => {
   const [jobsData, setJobsData] = useState({
     name: title,
     datePosted: "2024-06-15",
@@ -39,6 +38,7 @@ const JobPage = ({ title, job, visible, handleVisibleJob }: JobsProps) => {
         <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-3xl mx-4 sm:mx-6 lg:mx-8 relative">
           <button
             className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+            onClick={handleVisibleJob}
           >
             &times;
           </button>
@@ -71,7 +71,7 @@ const JobPage = ({ title, job, visible, handleVisibleJob }: JobsProps) => {
           </div>
           <button
             className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
-            
+            onClick={handleVisibleJob}
           >
             Back
           </button>

@@ -36,6 +36,10 @@ const Dashboard = () => {
     function handleJobsPop(){
             setJobsPop(true)
     }
+
+    function handleJobVisibility(){
+            setJobsPop(false)
+    }
     
     const handleCancel = () => {
         setSave(false)
@@ -174,7 +178,7 @@ const Dashboard = () => {
                         <h2 className="text-2xl font-semibold text-gray-700 mb-4">Applied Jobs</h2>
                         <ul className="bg-white p-4 rounded-lg shadow-md">
                             {(user.appliedJobs ?? []).map((job, index) => (
-                                <li key={index} className="border-b py-2 text-gray-700"
+                                <li key={index} className="border-b py-2 text-gray-700 rounded hover:bg-blue-700 cursor-pointer"
                                 onClick={() => handleJobTitle(job)}
                                 >{job}</li>
                             ))}
@@ -184,7 +188,7 @@ const Dashboard = () => {
                         <h2 className="text-2xl font-semibold text-gray-700 mb-4">Posted Jobs</h2>
                         <ul className="bg-white p-4 rounded-lg shadow-md">
                             {(user.postedJobs ?? []).map((job:any, index:any) => (
-                                <li key={index} className="border-b py-2 text-gray-700" onClick={handleJobsPop} >{job}</li>
+                                <li key={index} className="border-b py-2 text-gray-700 rounded hover:bg-blue-700 cursor-pointer" onClick={handleJobsPop} >{job}</li>
                             ))}
                         </ul>
                     </div>
@@ -192,7 +196,7 @@ const Dashboard = () => {
                         <h2 className="text-2xl font-semibold text-gray-700 mb-4">Applied Bounties</h2>
                         <ul className="bg-white p-4 rounded-lg shadow-md">
                             {(user.appliedBounties ?? []).map((bounty:any, index:any) => (
-                                <li key={index} className="border-b py-2 text-gray-700">{bounty}</li>
+                                <li key={index} className="border-b py-2 text-gray-700 rounded hover:bg-blue-700 cursor-pointer">{bounty}</li>
                             ))}
                         </ul>
                     </div>
@@ -200,7 +204,7 @@ const Dashboard = () => {
                         <h2 className="text-2xl font-semibold text-gray-700 mb-4">Posted Bounties</h2>
                         <ul className="bg-white p-4 rounded-lg shadow-md">
                             {(user.postedBounties ?? []).map((bounty:any, index:any) => (
-                                <li key={index} className="border-b py-2 text-gray-700">{bounty}</li>
+                                <li key={index} className="border-b py-2 text-gray-700 rounded hover:bg-blue-700 cursor-pointer">{bounty}</li>
                             ))}
                         </ul>
                     </div>
@@ -232,9 +236,11 @@ const Dashboard = () => {
                 
                 /> }
 
-                { jobsPop && <JobPage 
+                { 
+                jobsPop && <JobPage 
                 job={jobs}
                 title={jobtitle}
+                handleVisibleJob={handleJobVisibility}
                 /> }
             </main>
         </div>
