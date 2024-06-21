@@ -35,6 +35,7 @@ const ApplyJob = ({ handleCancelJob, handleSaveJob, username, job, userJob }: Ad
     };
 
     console.log(userJob)
+    
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         // onApply(application);

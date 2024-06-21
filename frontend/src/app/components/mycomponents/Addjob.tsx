@@ -16,7 +16,6 @@ type AddJobProps = {
 
 const AddJob = ({ handleCancel, handleSave, username, user, job }: AddJobProps) => {
 
-    console.log(job)
 
     const [newJob, setNewJob] = useState<Job>({
         name: '',
@@ -24,7 +23,8 @@ const AddJob = ({ handleCancel, handleSave, username, user, job }: AddJobProps) 
         description: '',
         duration: '',
         type: 'fulltime', // Default to fulltime, can be changed by user
-        username: username
+        username: username,
+        candidates: [{}]
     });
 
 
