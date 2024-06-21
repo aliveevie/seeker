@@ -7,16 +7,18 @@ export type Bounty = {
     reward: string;
     type: 'fulltime' | 'parttime';
     username: string;
+    candidates: any;
 };
 
-const bounties: Bounty[] = [
+const bountiesData: Bounty[] = [
     {
         name: "Cairo Fullstack Bounty",
         datePosted: "2024-06-01",
         description: "Develop a fullstack application using Cairo for Starknet.",
         reward: "5000 STK",
         type: 'fulltime',
-        username: users[0].username // aliveevie
+        username: users[0].username, // aliveevie;
+        candidates: []
     },
     {
         name: "Backend Developer for Starknet",
@@ -25,6 +27,8 @@ const bounties: Bounty[] = [
         reward: "4000 STK",
         type: 'parttime',
         username: users[1].username // johndoe
+        ,
+        candidates: []
     },
     {
         name: "Starknet Cairo Library",
@@ -33,6 +37,8 @@ const bounties: Bounty[] = [
         reward: "3000 STK",
         type: 'fulltime',
         username: users[2].username // janedoe
+        ,
+        candidates: []
     },
     {
         name: "Starknet DApp Security Audit",
@@ -41,6 +47,8 @@ const bounties: Bounty[] = [
         reward: "4500 STK",
         type: 'fulltime',
         username: users[3].username // robertsmith
+        ,
+        candidates: []
     },
     {
         name: "Frontend Developer for Starknet",
@@ -49,7 +57,9 @@ const bounties: Bounty[] = [
         reward: "3500 STK",
         type: 'parttime',
         username: users[4].username // emilybrown
+        ,
+        candidates: []
     }
 ];
 
-export default bounties;
+export default bountiesData;

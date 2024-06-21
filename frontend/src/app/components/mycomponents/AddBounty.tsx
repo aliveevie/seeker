@@ -1,27 +1,27 @@
 import { useState } from 'react';
 import bounties from '@/app/data/bounties';
+import { Bounty } from '@/app/data/bounties';
+import { User } from '@/app/data/users';
 
 type AddBountyProps = {
     handleCancel: () => void;
-    handleSave: (newBounty: Bounty) => void;
+    handleSave: () => void;
     username: string | null;
+    bounties: Bounty[];
+    user: User
 };
 
-type Bounty = {
-    name: string;
-    datePosted: string;
-    description: string;
-    reward: string;
-    type: 'fulltime' | 'parttime';
-};
 
-const AddBounty = ({ handleCancel, handleSave, username }: AddBountyProps) => {
+
+const AddBounty = ({ handleCancel, handleSave, username, bounties, user }: AddBountyProps) => {
     const [newBounty, setNewBounty] = useState<Bounty>({
-        name: '',
+        username: '',
         datePosted: '',
         description: '',
         reward: '',
-        type: 'fulltime' // Default to fulltime, can be changed by user
+        type: 'fulltime', // Default to fulltime, can be changed by user
+        candidates: [],
+        name: ''
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -36,19 +36,13 @@ const AddBounty = ({ handleCancel, handleSave, username }: AddBountyProps) => {
         e.preventDefault();
         
         if (username) {
-            const updatedBounty = { ...newBounty, username };
-            bounties.push(updatedBounty);
-            handleSave(updatedBounty);
+            bounties.push(newBounty);
+            user.postedBounties?.push(newBounty.name)
         }
         
-        // Optionally, reset form fields after submission
-        setNewBounty({
-            name: '',
-            datePosted: '',
-            description: '',
-            reward: '',
-            type: 'fulltime'
-        });
+
+        handleSave();
+
     };
 
     return (

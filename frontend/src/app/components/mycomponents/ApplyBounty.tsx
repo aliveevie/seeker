@@ -1,5 +1,6 @@
 "use client";
 
+import { Bounty } from '@/app/data/bounties';
 import { useState } from 'react';
 
 type Application = {
@@ -14,14 +15,17 @@ type AddPros = {
     handleApplyJob: () => void;
     username: string | null;
     showApply: boolean;
+    dataBounties: Bounty[]
 };
 
-const ApplyBounty = ({ username, handleCancelJob, handleSaveJob, handleApplyJob, showApply }: AddPros) => {
+const ApplyBounty = ({ username, handleCancelJob, handleSaveJob, handleApplyJob, showApply, dataBounties }: AddPros) => {
     const [application, setApplication] = useState<Application>({
         name: '',
         skills: '',
         message: ''
     });
+
+    console.log(dataBounties)
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;

@@ -1,9 +1,10 @@
 "use client";
 
-import bounties from "@/app/data/bounties";
+// import bounties from "@/app/data/bounties";
 import { Bounty } from "@/app/data/bounties";
 import AddBounty from "./AddBounty";
 import ApplyBounty from "./ApplyBounty";
+import { useState } from "react";
 
 type Addpros = {
     handleCancelJob: () => void;
@@ -11,11 +12,19 @@ type Addpros = {
     handleApplyJob: () => void;
     username: string | null;
     showApply: boolean;
+    bounties: Bounty[];
 }
 
 
 
-const Bounties = ({ username, handleCancelJob, handleSaveJob, handleApplyJob, showApply } : Addpros ) => {
+const Bounties = ({ username, handleCancelJob, handleSaveJob, handleApplyJob, showApply, bounties } : Addpros ) => {
+
+    const [dataBounty, setDataBounty] = useState([])
+
+    function handleBountiesData(data:any){
+            setDataBounty(data)
+    }
+
     return (
         <div className="max-w-4xl mx-auto p-4">
             <div className="mb-6">
@@ -24,7 +33,9 @@ const Bounties = ({ username, handleCancelJob, handleSaveJob, handleApplyJob, sh
             </div>
             <div className="grid gap-6">
                 {bounties.map((bounty: Bounty, index: number) => (
-                    <div key={index} className="p-6 bg-white rounded-lg shadow-md border border-gray-200">
+                    <div key={index} className="p-6 bg-white rounded-lg shadow-md border border-gray-200"
+                    onClick={() => handleBountiesData(bounty)}
+                    >
                         <h3 className="text-lg font-semibold text-black">{bounty.name}</h3>
                         <p className="text-sm text-gray-500">Posted on: {bounty.datePosted}</p>
                         <p className="mt-2 text-gray-700">{bounty.description}</p>
@@ -40,7 +51,11 @@ const Bounties = ({ username, handleCancelJob, handleSaveJob, handleApplyJob, sh
                     </div>
                 ))}
             </div>
-            { showApply && <ApplyBounty handleApplyJob={handleApplyJob} handleSaveJob={handleSaveJob} handleCancelJob={handleCancelJob} showApply={showApply} username={username} /> }
+            { showApply && <ApplyBounty handleApplyJob={handleApplyJob} 
+            handleSaveJob={handleSaveJob} handleCancelJob={handleCancelJob} 
+            showApply={showApply} username={username} 
+            dataBounties={dataBounty}
+            /> }
         </div>
     );
 };
