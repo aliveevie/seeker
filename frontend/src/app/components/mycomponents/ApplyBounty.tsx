@@ -1,10 +1,11 @@
 "use client";
 
 import { Bounty } from '@/app/data/bounties';
+import { User } from '@/app/data/users';
 import { useState } from 'react';
 
 type Application = {
-    name: string;
+    name: string | null;
     skills: string;
     message: string;
 };
@@ -15,12 +16,13 @@ type AddPros = {
     handleApplyJob: () => void;
     username: string | null;
     showApply: boolean;
-    dataBounties: Bounty[]
+    dataBounties: any;
+    user: any;
 };
 
-const ApplyBounty = ({ username, handleCancelJob, handleSaveJob, handleApplyJob, showApply, dataBounties }: AddPros) => {
+const ApplyBounty = ({ username, handleCancelJob, handleSaveJob, handleApplyJob, showApply, dataBounties, user }: AddPros) => {
     const [application, setApplication] = useState<Application>({
-        name: '',
+        name: username,
         skills: '',
         message: ''
     });
@@ -37,13 +39,9 @@ const ApplyBounty = ({ username, handleCancelJob, handleSaveJob, handleApplyJob,
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        handleApplyJob();
-        setApplication({
-            name: '',
-            skills: '',
-            message: ''
-        });
-        handleCancelJob();
+        dataBounties.candidates?.push(application)
+        
+        handleSaveJob();
     };
 
     return (
@@ -51,18 +49,7 @@ const ApplyBounty = ({ username, handleCancelJob, handleSaveJob, handleApplyJob,
             <div className="bg-white p-8 rounded-md shadow-lg max-w-md w-full">
                 <h3 className="text-lg font-semibold mb-4 text-black">Apply for Bounty</h3>
                 <form onSubmit={handleSubmit} className="space-y-4">
-                    <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-black mb-1">Name</label>
-                        <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            value={application.name}
-                            onChange={handleChange}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                            required
-                        />
-                    </div>
+                 
                     <div>
                         <label htmlFor="skills" className="block text-sm font-medium text-black mb-1">Skills</label>
                         <input

@@ -240,7 +240,7 @@ const Dashboard = () => {
                 showApply={showApply}
                 handleSaveJob={handleSaveJob}
                 bounties={bountiesData}
-                
+                user={user}
                 /> }
 
                 { 

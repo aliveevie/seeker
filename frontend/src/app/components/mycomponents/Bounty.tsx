@@ -5,6 +5,7 @@ import { Bounty } from "@/app/data/bounties";
 import AddBounty from "./AddBounty";
 import ApplyBounty from "./ApplyBounty";
 import { useState } from "react";
+import { User } from "next-auth";
 
 type Addpros = {
     handleCancelJob: () => void;
@@ -13,11 +14,12 @@ type Addpros = {
     username: string | null;
     showApply: boolean;
     bounties: Bounty[];
+    user: User;
 }
 
 
 
-const Bounties = ({ username, handleCancelJob, handleSaveJob, handleApplyJob, showApply, bounties } : Addpros ) => {
+const Bounties = ({ username, handleCancelJob, handleSaveJob, handleApplyJob, showApply, bounties, user } : Addpros ) => {
 
     const [dataBounty, setDataBounty] = useState([])
 
@@ -55,6 +57,7 @@ const Bounties = ({ username, handleCancelJob, handleSaveJob, handleApplyJob, sh
             handleSaveJob={handleSaveJob} handleCancelJob={handleCancelJob} 
             showApply={showApply} username={username} 
             dataBounties={dataBounty}
+            user={user}
             /> }
         </div>
     );
